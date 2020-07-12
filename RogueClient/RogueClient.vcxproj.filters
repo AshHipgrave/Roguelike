@@ -15,8 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="Source\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Assets\Fonts\Placeholder.txt" />
+    <Text Include="Assets\Audio\Placeholder.txt" />
+    <Text Include="Assets\Images\SpriteSheet_Info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Images\SpriteSheet_magenta.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Images\SpriteSheet_Transparent.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
