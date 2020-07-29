@@ -1,89 +1,80 @@
 #include "GameTimer.h"
 
-#include <iostream>
+#include <SDL.h>
 
 GameTimer::GameTimer()
 {
-	m_StartTicks = 0;
-	m_PausedTicks = 0;
+	m_StartTime = 0;
+	m_StopTime = 0;
+	m_TotalTime = 0;
 
-	m_bIsStarted = false;
-	m_bIsPaused = false;
+	m_CurrentTime = 0;
+	m_PreviousTime = 0;
+
+	m_DeltaTime = 0.0f;
+
+	m_bIsStopped = true;
+
+	m_Frequency = (float)SDL_GetPerformanceFrequency();
+}
+
+float GameTimer::GetTotalTime() const
+{
+	return m_TotalTime;
+}
+
+float GameTimer::GetDeltaTime() const
+{
+	return m_DeltaTime;
+}
+
+float GameTimer::GetFrequency() const
+{
+	return m_Frequency;
+}
+
+void GameTimer::Reset()
+{
+	assert(m_bIsStopped);
+
+	Uint64 currentTime = SDL_GetPerformanceCounter();
+
+	m_StartTime = currentTime;
+
+	m_StopTime = 0;
+	m_TotalTime = 0;
+
+	m_bIsStopped = false;
 }
 
 void GameTimer::Start()
 {
-	if (m_bIsStarted)
-	{
-		std::cout << "WARNING: Attempt to start an already running timer! If the timer is paused, use GameTimer::Resume() to restart it." << std::endl;
-		return;
-	}
-
-	m_bIsStarted = true;
-	m_bIsPaused = false;
-
-	m_StartTicks = SDL_GetTicks();
-	m_PausedTicks = 0;
+	Reset();
 }
 
 void GameTimer::Stop()
 {
-	m_bIsStarted = false;
-	m_bIsPaused = false;
+	assert(!m_bIsStopped);
 
-	m_StartTicks = 0;
-	m_PausedTicks = 0;
+	m_StopTime = SDL_GetPerformanceCounter();
+
+	m_bIsStopped = true;
 }
 
-void GameTimer::Pause()
+void GameTimer::Tick()
 {
-	if (!m_bIsStarted || m_bIsPaused)
+	if (m_bIsStopped)
 	{
-		std::cout << "WARNING: Attempt to pause a non-running or already paused timer!" << std::endl;
+		m_DeltaTime = 0.0f;
 		return;
 	}
 
-	m_bIsPaused = true;
+	Uint64 currentTime = SDL_GetPerformanceCounter();
+	m_CurrentTime = currentTime;
+	
+	m_DeltaTime = (m_CurrentTime - m_PreviousTime) / m_Frequency * 1000.0f;
 
-	m_PausedTicks = SDL_GetTicks() - m_StartTicks;
-	m_StartTicks = 0;
-}
+	m_PreviousTime = m_CurrentTime;
 
-void GameTimer::Resume()
-{
-	if (!m_bIsStarted || !m_bIsPaused)
-	{
-		std::cout << "WARNING: Attempt to resume a non-running or non-paused timer!" << std::endl;
-		return;
-	}
-
-	m_bIsPaused = false;
-
-	m_StartTicks = SDL_GetTicks() - m_PausedTicks;
-	m_PausedTicks = 0;
-}
-
-Uint32 GameTimer::GetTicks()
-{
-	if (m_bIsStarted)
-	{
-		if (m_bIsPaused)
-		{
-			return m_PausedTicks;
-		}
-
-		return SDL_GetTicks() - m_StartTicks;
-	}
-
-	return 0;
-}
-
-bool GameTimer::IsPaused() const
-{
-	return m_bIsPaused;
-}
-
-bool GameTimer::IsStarted() const
-{
-	return m_bIsStarted;
+	m_TotalTime = m_StartTime - m_CurrentTime;
 }
