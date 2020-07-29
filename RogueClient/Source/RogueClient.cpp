@@ -17,7 +17,7 @@ bool RogueClient::Init(const char* windowTitle, int windowWidth, int windowHeigh
 
 	SDL_SetRenderDrawColor(m_Renderer, 100, 149, 237, 255);
 
-	m_GameTimer = new GameTimer();
+	//m_GameTimer = new GameTimer();
 
 	LoadResources();
 
@@ -33,22 +33,26 @@ void RogueClient::Run()
 {
 	m_bIsRunning = true;
 
-	m_GameTimer->Start();
+	//m_GameTimer->Start();
+	m_GameTimer.Reset();
 
 	while (m_bIsRunning)
 	{
-		m_GameTimer->Tick();
-		float deltaTime = m_GameTimer->GetDeltaTime();
+		//m_GameTimer->Tick();
+		//float deltaTime = m_GameTimer->GetDeltaTime();
 
 		HandleEvents();
 
+		m_GameTimer.Tick();
+
+		float deltaTime = m_GameTimer.GetDeltaTime();
+
 		Update(deltaTime);
 		Draw(deltaTime);
-
-		m_FrameCount++;
 	}
 
-	m_GameTimer->Stop();
+	//m_GameTimer->Stop();
+	m_GameTimer.Stop();
 	Exit();
 }
 
@@ -74,11 +78,34 @@ void RogueClient::Draw(float deltaTime)
 {
 	SDL_RenderClear(m_Renderer);
 
-	float fps = m_FrameCount / (m_GameTimer->GetTotalTime() * m_GameTimer->GetFrequency());
+	static int frameCount = 0;
+	static float timeElapsed = 0.0f;
 
-	std::string debugText("FPS: " + std::to_string(fps));
+	static float prevFPS = 0.0f;
+	static float prevMSPerFrame = 0.0f;
 
-	m_DiagnosticText->Draw(debugText.c_str(), 0, 0, m_Renderer);
+	frameCount++;
+
+	if (m_GameTimer.GetTotalTime() - timeElapsed >= 1.0f)
+	{
+		float fps = (float)frameCount;
+		float msPerFrame = 1000.0f / fps;
+
+		std::string debugText("FPS: " + std::to_string(fps) + " ( " + std::to_string(msPerFrame) + "ms ) ");
+
+		m_DiagnosticText->Draw(debugText.c_str(), 0, 0, m_Renderer);
+
+		prevFPS = fps;
+		prevMSPerFrame = msPerFrame;
+
+		frameCount = 0;
+		timeElapsed += 1.0f;
+	}
+	else
+	{
+		std::string debugText("FPS: " + std::to_string(prevFPS) + " ( " + std::to_string(prevMSPerFrame) + "ms ) "); 
+		m_DiagnosticText->Draw(debugText.c_str(), 0, 0, m_Renderer);
+	}
 
 	SDL_RenderPresent(m_Renderer);
 }

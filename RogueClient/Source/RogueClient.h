@@ -24,7 +24,7 @@ public:
 	void Exit();
 
 protected:
-	GameTimer* m_GameTimer = nullptr;
+	GameTimer m_GameTimer;
 	
 	SDL_Renderer* m_Renderer = nullptr;
 	SDL_Window* m_GameWindow = nullptr;
@@ -32,8 +32,6 @@ protected:
 	RenderText* m_DiagnosticText = nullptr;
 
 private:
-	int m_FrameCount = 0;
-
 	bool m_bIsRunning = false;
 
 	const float TARGET_FPS = 60.0f;
