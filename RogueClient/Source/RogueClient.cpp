@@ -12,14 +12,18 @@ bool RogueClient::Init(const char* windowTitle, int windowWidth, int windowHeigh
 	if (m_GameWindow == nullptr)
 		return false;
 
-	m_WindowSurface = SDL_GetWindowSurface(m_GameWindow);
+	m_Renderer = SDL_CreateRenderer(m_GameWindow, -1, SDL_RENDERER_ACCELERATED);
+
+	SDL_SetRenderDrawColor(m_Renderer, 100, 149, 237, 255);
+
+	m_GameTimer = new GameTimer();
 
 	return true;
 }
 
 void RogueClient::LoadResources()
 {
-	m_TextureSurface = SDL_LoadBMP("Assets/Images/SpriteSheet_magenta.bmp");
+
 }
 
 void RogueClient::Run()
@@ -28,8 +32,14 @@ void RogueClient::Run()
 
 	SDL_Event sdlEvent;
 
+	m_GameTimer->Start();
+
 	while (!quit)
 	{
+		float avgFPS = m_TotalFrames / (m_GameTimer->GetTicks() / 1000.f);
+
+		if (avgFPS > 2000000) avgFPS = 0;
+
 		while (SDL_PollEvent(&sdlEvent))
 		{
 			if (sdlEvent.type == SDL_QUIT)
@@ -38,18 +48,46 @@ void RogueClient::Run()
 			}
 		}
 
-		SDL_BlitSurface(m_TextureSurface, NULL, m_WindowSurface, NULL);
+		SDL_RenderClear(m_Renderer);
 
-		SDL_UpdateWindowSurface(m_GameWindow);
+		
+
+		SDL_RenderPresent(m_Renderer);
+
+		m_TotalFrames++;
+
+		int frameTicks = m_GameTimer->GetTicks();
+
+		if (frameTicks < TicksPerFrame)
+		{
+			SDL_Delay(TicksPerFrame - frameTicks);
+		}
+
+		std::cout << "FPS " << avgFPS << " | Frame time " << frameTicks << std::endl;
 	}
+}
+
+void RogueClient::HandleEvents()
+{
+
+}
+
+void RogueClient::Update(float deltaTime)
+{
+
+}
+
+void RogueClient::Draw(float deltaTime)
+{
+
 }
 
 void RogueClient::Exit()
 {
-	if (m_WindowSurface != nullptr)
+	if (m_Renderer != nullptr)
 	{
-		SDL_FreeSurface(m_WindowSurface);
-		m_WindowSurface = nullptr;
+		SDL_DestroyRenderer(m_Renderer);
+		m_Renderer = nullptr;
 	}
 	
 	if (m_GameWindow != nullptr)

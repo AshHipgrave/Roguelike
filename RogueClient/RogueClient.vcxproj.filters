@@ -21,6 +21,9 @@
     <ClCompile Include="Source\RogueClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GameTimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Assets\Fonts\Placeholder.txt" />
@@ -34,9 +37,15 @@
     <Image Include="Assets\Images\SpriteSheet_Transparent.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\Images\SpriteSheet_magenta.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\RogueClient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameTimer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

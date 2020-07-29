@@ -179,6 +179,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\GameTimer.cpp" />
     <ClCompile Include="Source\RogueClient.cpp" />
     <ClCompile Include="Source\Main.cpp" />
   </ItemGroup>
@@ -188,10 +189,12 @@
     <Text Include="Assets\Images\SpriteSheet_Info.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\Images\SpriteSheet_magenta.bmp" />
     <Image Include="Assets\Images\SpriteSheet_magenta.png" />
     <Image Include="Assets\Images\SpriteSheet_Transparent.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\GameTimer.h" />
     <ClInclude Include="Source\RogueClient.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
