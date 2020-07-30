@@ -38,4 +38,7 @@ protected:
 private:
 	bool m_bIsPaused = false;
 	bool m_bIsRunning = false;
+
+	bool m_bIsMaximised = false;
+	bool m_bIsMinimised = false;
 };

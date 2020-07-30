@@ -9,6 +9,7 @@ bool RogueClient::Init(const char* windowTitle, int windowWidth, int windowHeigh
 		return false;
 
 	m_GameWindow = SDL_CreateWindow(windowTitle, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, SDL_WINDOW_SHOWN);
+	SDL_SetWindowResizable(m_GameWindow, SDL_bool::SDL_TRUE);
 
 	if (m_GameWindow == nullptr)
 		return false;
@@ -65,6 +66,50 @@ void RogueClient::HandleEvents()
 		if (sdlEvent.type == SDL_QUIT)
 		{
 			m_bIsRunning = false;
+		}
+		else if (sdlEvent.type == SDL_WINDOWEVENT)
+		{
+			switch (sdlEvent.window.event)
+			{
+				case SDL_WINDOWEVENT_RESTORED:
+					if (m_bIsMaximised)
+					{
+						m_bIsMaximised = false;
+						m_bIsMinimised = false;
+					}
+					else
+					{
+						m_bIsMinimised = false;
+						m_bIsPaused = false;
+
+						m_GameTimer.Start();
+					}
+					break;
+
+				case SDL_WINDOWEVENT_MAXIMIZED:
+					if (!m_bIsPaused)
+					{
+						m_bIsMaximised = true;
+					}
+					else
+					{
+						m_bIsPaused = false;
+						m_bIsMinimised = false;
+
+						m_GameTimer.Start();
+					}
+					break;
+
+				case SDL_WINDOWEVENT_MINIMIZED:
+					m_bIsPaused = true;
+
+					m_bIsMinimised = true;
+					m_bIsMaximised = false;
+
+					m_GameTimer.Stop();
+					
+					break;
+			}
 		}
 	}
 }
