@@ -23,8 +23,11 @@ public:
 	void Run();
 
 	void HandleEvents();
-	void Update(float deltaTime);
-	void Draw(float deltaTime);
+	void Update(GameTimer* timer);
+
+	void Clear();
+	void Draw();
+	void Present();
 
 	void Exit();
 

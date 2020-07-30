@@ -41,12 +41,13 @@ void RogueClient::Run()
 
 		m_GameTimer.Tick();
 
-		float deltaTime = m_GameTimer.GetDeltaTime();
-
 		if (!m_bIsPaused)
 		{
-			Update(deltaTime);
-			Draw(deltaTime);
+			Update(&m_GameTimer);
+
+			Clear();
+			Draw();
+			Present();
 
 			CalculateFrameStats();
 		}
@@ -68,17 +69,25 @@ void RogueClient::HandleEvents()
 	}
 }
 
-void RogueClient::Update(float deltaTime)
+void RogueClient::Update(GameTimer* timer)
 {
 	// TODO: Update logic here.
 }
 
-void RogueClient::Draw(float deltaTime)
+void RogueClient::Clear()
 {
 	SDL_RenderClear(m_Renderer);
+}
 
+void RogueClient::Draw()
+{
 	m_DiagnosticText->Draw();
 
+	//TODO: Additional draw logic here.	
+}
+
+void RogueClient::Present()
+{
 	SDL_RenderPresent(m_Renderer);
 }
 
