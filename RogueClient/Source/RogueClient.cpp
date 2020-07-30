@@ -9,19 +9,19 @@ bool RogueClient::Init(const char* windowTitle, int windowWidth, int windowHeigh
 		return false;
 
 	m_GameWindow = SDL_CreateWindow(windowTitle, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, SDL_WINDOW_SHOWN);
-	SDL_SetWindowResizable(m_GameWindow, SDL_bool::SDL_TRUE);
+	SDL_SetWindowResizable(m_GameWindow, SDL_TRUE);
 
 	if (m_GameWindow == nullptr)
 		return false;
 
 	m_Renderer = SDL_CreateRenderer(m_GameWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-	ImGui::CreateContext();
-	ImGuiSDL::Initialize(m_Renderer, windowWidth, windowHeight);
-
 	SDL_SetRenderDrawColor(m_Renderer, 100, 149, 237, 255);
 
 	SDL_EventState(SDL_SYSWMEVENT, SDL_ENABLE);
+
+	m_ImGuiContext = new ImGuiImpl();
+	m_ImGuiContext->Init(m_Renderer, windowWidth, windowHeight);
 
 	LoadResources();
 
@@ -50,10 +50,8 @@ void RogueClient::Run()
 			Update(&m_GameTimer);
 
 			Clear();
-			ImGuiDraw();
 			Draw();
 			Present();
-
 
 			CalculateFrameStats();
 		}
@@ -114,37 +112,18 @@ void RogueClient::HandleEvents()
 					m_GameTimer.Stop();
 					
 					break;
-
-				case SDL_WINDOWEVENT_SIZE_CHANGED:
-					ImGuiIO& io = ImGui::GetIO();
-
-					io.DisplaySize.x = static_cast<float>(sdlEvent.window.data1);
-					io.DisplaySize.y = static_cast<float>(sdlEvent.window.data2);
-					
-					break;
 			}
 		}
-		else if (sdlEvent.type == SDL_MOUSEWHEEL)
-		{
-			ImGuiIO& io = ImGui::GetIO();
-			io.MouseWheel = static_cast<float>(sdlEvent.wheel.y);
-		}
+
+		m_ImGuiContext->HandleEvent(&sdlEvent);
 	}
 }
 
 void RogueClient::Update(GameTimer* timer)
 {
-	int mouseX, mouseY;
+	// TODO: Additional update logic here.
 
-	const int buttons = SDL_GetMouseState(&mouseX, &mouseY);
-
-	ImGuiIO& io = ImGui::GetIO();
-
-	io.MousePos = ImVec2(static_cast<float>(mouseX), static_cast<float>(mouseY));
-	io.MouseDown[0] = buttons & SDL_BUTTON(SDL_BUTTON_LEFT);
-	io.MouseDown[1] = buttons & SDL_BUTTON(SDL_BUTTON_RIGHT);
-
-	// TODO: Update logic here.
+	m_ImGuiContext->Update();
 }
 
 void RogueClient::Clear()
@@ -154,6 +133,8 @@ void RogueClient::Clear()
 
 void RogueClient::Draw()
 {
+	m_ImGuiContext->Draw();
+
 	m_DiagnosticText->Draw();
 
 	//TODO: Additional draw logic here.	
@@ -164,19 +145,13 @@ void RogueClient::Present()
 	SDL_RenderPresent(m_Renderer);
 }
 
-void RogueClient::ImGuiDraw()
-{
-	ImGui::NewFrame();
-	ImGui::ShowDemoWindow();
-
-	ImGui::Render();
-	ImGuiSDL::Render(ImGui::GetDrawData());
-}
-
 void RogueClient::Exit()
 {
-	ImGuiSDL::Deinitialize();
-	ImGui::DestroyContext();
+	if (m_ImGuiContext != nullptr)
+	{
+		m_ImGuiContext->Destroy();
+		m_ImGuiContext = nullptr;
+	}
 
 	if (m_Renderer != nullptr)
 	{

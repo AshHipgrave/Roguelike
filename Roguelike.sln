@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RogueClient", "RogueClient\RogueClient.vcxproj", "{045A0198-B376-41DA-A285-D64B89E178DD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3FCC1D18-9004-4515-85C4-D12ED5567E67} = {3FCC1D18-9004-4515-85C4-D12ED5567E67}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImGui_SDL", "ThirdParty\ImGUI_SDL\ImGui_SDL.vcxproj", "{3FCC1D18-9004-4515-85C4-D12ED5567E67}"
 EndProject

@@ -2,7 +2,7 @@
 
 #include <sstream>
 
-static class Utils
+class Utils
 {
 public:
 	static std::string float_to_str(const float value, const int precision = 3)

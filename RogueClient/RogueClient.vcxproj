@@ -191,6 +191,7 @@ copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\zl
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\ImGuiImpl.cpp" />
     <ClCompile Include="Source\RenderText.cpp" />
     <ClCompile Include="Source\GameTimer.cpp" />
     <ClCompile Include="Source\RogueClient.cpp" />
@@ -207,6 +208,7 @@ copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\zl
     <Image Include="Assets\Images\SpriteSheet_Transparent.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\ImGuiImpl.h" />
     <ClInclude Include="Source\RenderText.h" />
     <ClInclude Include="Source\GameTimer.h" />
     <ClInclude Include="Source\RogueClient.h" />

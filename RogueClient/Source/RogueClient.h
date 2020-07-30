@@ -3,12 +3,11 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 
-#include <imgui.h>
-#include <imgui_sdl.h>
-
 #include "Utils.h"
 #include "GameTimer.h"
 #include "RenderText.h"
+
+#include "ImGuiImpl.h"
 
 class RogueClient
 {
@@ -25,8 +24,6 @@ public:
 	void Draw();
 	void Present();
 
-	void ImGuiDraw();
-
 	void Exit();
 
 protected:
@@ -34,6 +31,8 @@ protected:
 
 protected:
 	GameTimer m_GameTimer;
+
+	ImGuiImpl* m_ImGuiContext = nullptr;
 	
 	SDL_Renderer* m_Renderer = nullptr;
 	SDL_Window* m_GameWindow = nullptr;
