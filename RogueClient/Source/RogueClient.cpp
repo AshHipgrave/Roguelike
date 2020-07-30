@@ -16,6 +16,9 @@ bool RogueClient::Init(const char* windowTitle, int windowWidth, int windowHeigh
 
 	m_Renderer = SDL_CreateRenderer(m_GameWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
+	ImGui::CreateContext();
+	ImGuiSDL::Initialize(m_Renderer, windowWidth, windowHeight);
+
 	SDL_SetRenderDrawColor(m_Renderer, 100, 149, 237, 255);
 
 	SDL_EventState(SDL_SYSWMEVENT, SDL_ENABLE);
@@ -47,8 +50,10 @@ void RogueClient::Run()
 			Update(&m_GameTimer);
 
 			Clear();
+			ImGuiDraw();
 			Draw();
 			Present();
+
 
 			CalculateFrameStats();
 		}
@@ -109,13 +114,36 @@ void RogueClient::HandleEvents()
 					m_GameTimer.Stop();
 					
 					break;
+
+				case SDL_WINDOWEVENT_SIZE_CHANGED:
+					ImGuiIO& io = ImGui::GetIO();
+
+					io.DisplaySize.x = static_cast<float>(sdlEvent.window.data1);
+					io.DisplaySize.y = static_cast<float>(sdlEvent.window.data2);
+					
+					break;
 			}
+		}
+		else if (sdlEvent.type == SDL_MOUSEWHEEL)
+		{
+			ImGuiIO& io = ImGui::GetIO();
+			io.MouseWheel = static_cast<float>(sdlEvent.wheel.y);
 		}
 	}
 }
 
 void RogueClient::Update(GameTimer* timer)
 {
+	int mouseX, mouseY;
+
+	const int buttons = SDL_GetMouseState(&mouseX, &mouseY);
+
+	ImGuiIO& io = ImGui::GetIO();
+
+	io.MousePos = ImVec2(static_cast<float>(mouseX), static_cast<float>(mouseY));
+	io.MouseDown[0] = buttons & SDL_BUTTON(SDL_BUTTON_LEFT);
+	io.MouseDown[1] = buttons & SDL_BUTTON(SDL_BUTTON_RIGHT);
+
 	// TODO: Update logic here.
 }
 
@@ -136,8 +164,20 @@ void RogueClient::Present()
 	SDL_RenderPresent(m_Renderer);
 }
 
+void RogueClient::ImGuiDraw()
+{
+	ImGui::NewFrame();
+	ImGui::ShowDemoWindow();
+
+	ImGui::Render();
+	ImGuiSDL::Render(ImGui::GetDrawData());
+}
+
 void RogueClient::Exit()
 {
+	ImGuiSDL::Deinitialize();
+	ImGui::DestroyContext();
+
 	if (m_Renderer != nullptr)
 	{
 		SDL_DestroyRenderer(m_Renderer);

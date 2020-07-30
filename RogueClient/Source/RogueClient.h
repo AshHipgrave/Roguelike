@@ -3,6 +3,9 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 
+#include <imgui.h>
+#include <imgui_sdl.h>
+
 #include "Utils.h"
 #include "GameTimer.h"
 #include "RenderText.h"
@@ -21,6 +24,8 @@ public:
 	void Clear();
 	void Draw();
 	void Present();
+
+	void ImGuiDraw();
 
 	void Exit();
 
