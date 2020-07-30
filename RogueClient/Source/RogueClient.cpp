@@ -17,7 +17,7 @@ bool RogueClient::Init(const char* windowTitle, int windowWidth, int windowHeigh
 
 	SDL_SetRenderDrawColor(m_Renderer, 100, 149, 237, 255);
 
-	//m_GameTimer = new GameTimer();
+	SDL_EventState(SDL_SYSWMEVENT, SDL_ENABLE);
 
 	LoadResources();
 
@@ -33,26 +33,26 @@ void RogueClient::Run()
 {
 	m_bIsRunning = true;
 
-	//m_GameTimer->Start();
 	m_GameTimer.Reset();
 
 	while (m_bIsRunning)
 	{
-		//m_GameTimer->Tick();
-		//float deltaTime = m_GameTimer->GetDeltaTime();
-
 		HandleEvents();
 
 		m_GameTimer.Tick();
 
 		float deltaTime = m_GameTimer.GetDeltaTime();
+		m_TotalTime += deltaTime;
 
-		Update(deltaTime);
-		Draw(deltaTime);
+		if (!m_bIsPaused)
+		{
+			Update(deltaTime);
+			Draw(deltaTime);
+
+			m_FrameCount++;
+		}
 	}
 
-	//m_GameTimer->Stop();
-	m_GameTimer.Stop();
 	Exit();
 }
 
@@ -65,6 +65,28 @@ void RogueClient::HandleEvents()
 		if (sdlEvent.type == SDL_QUIT)
 		{
 			m_bIsRunning = false;
+		}
+		else if (sdlEvent.type == SDL_SYSWMEVENT)
+		{
+			switch (sdlEvent.syswm.msg->msg.win.msg)
+			{
+				case WM_ENTERSIZEMOVE:
+					m_bIsPaused = true;
+					m_bIsResizing = true;
+
+					m_GameTimer.Stop();
+
+					break;
+
+				case WM_EXITSIZEMOVE:
+					m_bIsPaused = false;
+					m_bIsResizing = false;
+
+					m_GameTimer.Start();
+
+					break;
+
+			}
 		}
 	}
 }
@@ -88,7 +110,7 @@ void RogueClient::Draw(float deltaTime)
 
 	if (m_GameTimer.GetTotalTime() - timeElapsed >= 1.0f)
 	{
-		float fps = (float)frameCount;
+		float fps = (float)frameCount; //(float)frameCount / m_Timer.GetTotalTime();
 		float msPerFrame = 1000.0f / fps;
 
 		std::string debugText("FPS: " + std::to_string(fps) + " ( " + std::to_string(msPerFrame) + "ms ) ");
