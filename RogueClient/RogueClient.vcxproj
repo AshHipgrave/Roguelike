@@ -210,6 +210,7 @@ copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\zl
     <ClInclude Include="Source\RenderText.h" />
     <ClInclude Include="Source\GameTimer.h" />
     <ClInclude Include="Source\RogueClient.h" />
+    <ClInclude Include="Source\Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

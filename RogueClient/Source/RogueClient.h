@@ -1,18 +1,11 @@
 #pragma once
 
-#include <string>
-#include <iostream>
-
 #include <SDL.h>
 #include <SDL_ttf.h>
-#include <SDL_events.h>
-#include <SDL_syswm.h>
 
+#include "Utils.h"
 #include "GameTimer.h"
 #include "RenderText.h"
-
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
 
 class RogueClient
 {
@@ -45,9 +38,4 @@ protected:
 private:
 	bool m_bIsPaused = false;
 	bool m_bIsRunning = false;
-
-	bool m_bIsResizing = false;
-
-	bool m_bIsMinimised = false;
-	bool m_bIsMaximized = false;
 };

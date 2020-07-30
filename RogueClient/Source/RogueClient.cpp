@@ -105,6 +105,7 @@ void RogueClient::Exit()
 		m_GameWindow = nullptr;
 	}
 
+	TTF_Quit();
 	SDL_Quit();
 }
 
@@ -120,7 +121,7 @@ void RogueClient::CalculateFrameStats()
 		float fps = (float)frameCount;
 		float msPerFrame = 1000.0f / fps;
 
-		std::string debugText("FPS: " + std::to_string(fps) + " (" + std::to_string(msPerFrame) + "ms)");
+		std::string debugText("FPS: " + Utils::float_to_str(fps, 0) + " (" + Utils::float_to_str(msPerFrame) + "ms)");
 
 		m_DiagnosticText->SetText(debugText.c_str());
 
