@@ -42,14 +42,11 @@ void RogueClient::Run()
 		m_GameTimer.Tick();
 
 		float deltaTime = m_GameTimer.GetDeltaTime();
-		m_TotalTime += deltaTime;
 
 		if (!m_bIsPaused)
 		{
 			Update(deltaTime);
-			Draw(deltaTime);
-
-			m_FrameCount++;
+			Draw(deltaTime); 
 		}
 	}
 
@@ -65,28 +62,6 @@ void RogueClient::HandleEvents()
 		if (sdlEvent.type == SDL_QUIT)
 		{
 			m_bIsRunning = false;
-		}
-		else if (sdlEvent.type == SDL_SYSWMEVENT)
-		{
-			switch (sdlEvent.syswm.msg->msg.win.msg)
-			{
-				case WM_ENTERSIZEMOVE:
-					m_bIsPaused = true;
-					m_bIsResizing = true;
-
-					m_GameTimer.Stop();
-
-					break;
-
-				case WM_EXITSIZEMOVE:
-					m_bIsPaused = false;
-					m_bIsResizing = false;
-
-					m_GameTimer.Start();
-
-					break;
-
-			}
 		}
 	}
 }
@@ -110,7 +85,7 @@ void RogueClient::Draw(float deltaTime)
 
 	if (m_GameTimer.GetTotalTime() - timeElapsed >= 1.0f)
 	{
-		float fps = (float)frameCount; //(float)frameCount / m_Timer.GetTotalTime();
+		float fps = (float)frameCount;
 		float msPerFrame = 1000.0f / fps;
 
 		std::string debugText("FPS: " + std::to_string(fps) + " ( " + std::to_string(msPerFrame) + "ms ) ");
