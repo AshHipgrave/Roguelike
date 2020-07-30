@@ -25,7 +25,7 @@ RenderText::RenderText(const char* text, int xPos, int yPos, SDL_Renderer* rende
 		return;
 	}
 
-	m_TextSurface = TTF_RenderText_Solid(m_TextFont, text, textColour);
+	m_TextSurface = TTF_RenderText_Blended(m_TextFont, text, textColour);
 
 	m_TextTexture = SDL_CreateTextureFromSurface(renderer, m_TextSurface);
 
@@ -64,7 +64,7 @@ void RenderText::SetText(const char* text, const char* fontName, const int fontS
 		SDL_FreeSurface(m_TextSurface);
 	}
 
-	m_TextSurface = TTF_RenderText_Solid(m_TextFont, text, textColour);
+	m_TextSurface = TTF_RenderText_Blended(m_TextFont, text, textColour);
 
 	m_TextTexture = SDL_CreateTextureFromSurface(m_Renderer, m_TextSurface);
 
