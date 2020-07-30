@@ -29,6 +29,9 @@ public:
 	void Exit();
 
 protected:
+	void CalculateFrameStats();
+
+protected:
 	GameTimer m_GameTimer;
 	
 	SDL_Renderer* m_Renderer = nullptr;

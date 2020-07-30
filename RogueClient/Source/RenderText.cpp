@@ -1,7 +1,9 @@
 #include "RenderText.h"
 
-RenderText::RenderText(const char* fontName, const int fontSize)
+RenderText::RenderText(SDL_Renderer* renderer, const char* fontName, const int fontSize, SDL_Color textColour)
 {
+	m_Renderer = renderer;
+
 	m_TextFont = TTF_OpenFont(fontName, fontSize);
 
 	if (!m_TextFont)
@@ -11,16 +13,26 @@ RenderText::RenderText(const char* fontName, const int fontSize)
 	}
 }
 
-RenderText::~RenderText()
+RenderText::RenderText(const char* text, int xPos, int yPos, SDL_Renderer* renderer, const char* fontName, const int fontSize, SDL_Color textColour)
 {
-	Cleanup();
+	m_Renderer = renderer;
 
-	m_TextSurface = nullptr;
-	m_TextTexture = nullptr;
-	m_TextFont = nullptr;
+	m_TextFont = TTF_OpenFont(fontName, fontSize);
+
+	if (!m_TextFont)
+	{
+		std::cout << "Failed to load required font! " << TTF_GetError() << std::endl;
+		return;
+	}
+
+	m_TextSurface = TTF_RenderText_Solid(m_TextFont, text, textColour);
+
+	m_TextTexture = SDL_CreateTextureFromSurface(renderer, m_TextSurface);
+
+	m_DestRect = { xPos, yPos, m_TextSurface->w, m_TextSurface->h };
 }
 
-void RenderText::Cleanup()
+RenderText::~RenderText()
 {
 	if (m_TextTexture)
 	{
@@ -31,17 +43,37 @@ void RenderText::Cleanup()
 	{
 		SDL_FreeSurface(m_TextSurface);
 	}
+
+	TTF_CloseFont(m_TextFont);
 }
 
-void RenderText::Draw(const char* text, int xPos, int yPos, SDL_Renderer* renderer, SDL_Color textColor)
+void RenderText::Draw()
 {
-	Cleanup();
+	SDL_RenderCopy(m_Renderer, m_TextTexture, NULL, &m_DestRect);
+}
 
-	m_TextSurface = TTF_RenderText_Solid(m_TextFont, text, textColor);
+void RenderText::SetText(const char* text, const char* fontName, const int fontSize, SDL_Color textColour)
+{
+	if (m_TextTexture)
+	{
+		SDL_DestroyTexture(m_TextTexture);
+	}
 
-	m_TextTexture = SDL_CreateTextureFromSurface(renderer, m_TextSurface);
+	if (m_TextSurface)
+	{
+		SDL_FreeSurface(m_TextSurface);
+	}
 
-	SDL_Rect dest = { xPos, yPos, m_TextSurface->w, m_TextSurface->h };
+	m_TextSurface = TTF_RenderText_Solid(m_TextFont, text, textColour);
 
-	SDL_RenderCopy(renderer, m_TextTexture, NULL, &dest);
+	m_TextTexture = SDL_CreateTextureFromSurface(m_Renderer, m_TextSurface);
+
+	m_DestRect.w = m_TextSurface->w; 
+	m_DestRect.h = m_TextSurface->h;
+}
+
+void RenderText::SetPosition(int xPos, int yPos)
+{
+	m_DestRect.x = xPos;
+	m_DestRect.y = yPos;
 }

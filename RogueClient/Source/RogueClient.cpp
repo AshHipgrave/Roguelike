@@ -26,7 +26,7 @@ bool RogueClient::Init(const char* windowTitle, int windowWidth, int windowHeigh
 
 void RogueClient::LoadResources()
 {
-	m_DiagnosticText = new RenderText();
+	m_DiagnosticText = new RenderText(m_Renderer);
 }
 
 void RogueClient::Run()
@@ -46,7 +46,9 @@ void RogueClient::Run()
 		if (!m_bIsPaused)
 		{
 			Update(deltaTime);
-			Draw(deltaTime); 
+			Draw(deltaTime);
+
+			CalculateFrameStats();
 		}
 	}
 
@@ -75,34 +77,7 @@ void RogueClient::Draw(float deltaTime)
 {
 	SDL_RenderClear(m_Renderer);
 
-	static int frameCount = 0;
-	static float timeElapsed = 0.0f;
-
-	static float prevFPS = 0.0f;
-	static float prevMSPerFrame = 0.0f;
-
-	frameCount++;
-
-	if (m_GameTimer.GetTotalTime() - timeElapsed >= 1.0f)
-	{
-		float fps = (float)frameCount;
-		float msPerFrame = 1000.0f / fps;
-
-		std::string debugText("FPS: " + std::to_string(fps) + " ( " + std::to_string(msPerFrame) + "ms ) ");
-
-		m_DiagnosticText->Draw(debugText.c_str(), 0, 0, m_Renderer);
-
-		prevFPS = fps;
-		prevMSPerFrame = msPerFrame;
-
-		frameCount = 0;
-		timeElapsed += 1.0f;
-	}
-	else
-	{
-		std::string debugText("FPS: " + std::to_string(prevFPS) + " ( " + std::to_string(prevMSPerFrame) + "ms ) "); 
-		m_DiagnosticText->Draw(debugText.c_str(), 0, 0, m_Renderer);
-	}
+	m_DiagnosticText->Draw();
 
 	SDL_RenderPresent(m_Renderer);
 }
@@ -122,4 +97,25 @@ void RogueClient::Exit()
 	}
 
 	SDL_Quit();
+}
+
+void RogueClient::CalculateFrameStats()
+{
+	static int frameCount = 0;
+	static float timeElapsed = 0.0f;
+
+	frameCount++;
+
+	if (m_GameTimer.GetTotalTime() - timeElapsed >= 1.0f)
+	{
+		float fps = (float)frameCount;
+		float msPerFrame = 1000.0f / fps;
+
+		std::string debugText("FPS: " + std::to_string(fps) + " (" + std::to_string(msPerFrame) + "ms)");
+
+		m_DiagnosticText->SetText(debugText.c_str());
+
+		frameCount = 0;
+		timeElapsed += 1.0f;
+	}
 }
