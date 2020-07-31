@@ -8,6 +8,9 @@ bool RogueClient::Init(const char* windowTitle, int windowWidth, int windowHeigh
 	if (TTF_Init() != 0)
 		return false;
 
+	if (!IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)
+		return false;
+
 	m_GameWindow = SDL_CreateWindow(windowTitle, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, SDL_WINDOW_SHOWN);
 	SDL_SetWindowResizable(m_GameWindow, SDL_TRUE);
 
@@ -20,8 +23,8 @@ bool RogueClient::Init(const char* windowTitle, int windowWidth, int windowHeigh
 
 	SDL_EventState(SDL_SYSWMEVENT, SDL_ENABLE);
 
-	m_ImGuiContext = new ImGuiImpl();
-	m_ImGuiContext->Init(m_Renderer, windowWidth, windowHeight);
+	//m_ImGuiContext = new ImGuiImpl();
+	//m_ImGuiContext->Init(m_Renderer, windowWidth, windowHeight);
 
 	LoadResources();
 
@@ -31,6 +34,7 @@ bool RogueClient::Init(const char* windowTitle, int windowWidth, int windowHeigh
 void RogueClient::LoadResources()
 {
 	m_DiagnosticText = new RenderText(m_Renderer);
+	m_CharactrerSprite = new Sprite("Assets\\Images\\Character.png", 60, 88, 960, 540, m_Renderer);
 }
 
 void RogueClient::Run()
@@ -112,10 +116,20 @@ void RogueClient::HandleEvents()
 					m_GameTimer.Stop();
 					
 					break;
+
+				case SDL_WINDOWEVENT_RESIZED:
+					int x, y;
+					SDL_GetWindowSize(m_GameWindow, &x, &y);
+
+					x /= 2;
+					y /= 2;
+
+					m_CharactrerSprite->Move(x, y);
+					break;
 			}
 		}
 
-		m_ImGuiContext->HandleEvent(&sdlEvent);
+		//m_ImGuiContext->HandleEvent(&sdlEvent);
 	}
 }
 
@@ -123,7 +137,7 @@ void RogueClient::Update(GameTimer* timer)
 {
 	// TODO: Additional update logic here.
 
-	m_ImGuiContext->Update();
+	//m_ImGuiContext->Update();
 }
 
 void RogueClient::Clear()
@@ -133,9 +147,10 @@ void RogueClient::Clear()
 
 void RogueClient::Draw()
 {
-	m_ImGuiContext->Draw();
+	//m_ImGuiContext->Draw();
 
 	m_DiagnosticText->Draw();
+	m_CharactrerSprite->Draw();
 
 	//TODO: Additional draw logic here.	
 }

@@ -74,29 +74,29 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(SolutionDir)int\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
-    <IncludePath>$(SolutionDir)ThirdParty\SDL2-2.0.12\include;$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)ThirdParty\ImGUI_SDL;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget);$(OutDir);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)ThirdParty\SDL2-2.0.12\include;$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)ThirdParty\SDL2_image-2.0.5\include;$(SolutionDir)ThirdParty\ImGUI_SDL;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_image-2.0.5\lib\$(PlatformTarget);$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(SolutionDir)int\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
-    <IncludePath>$(SolutionDir)ThirdParty\SDL2-2.0.12\include;$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)ThirdParty\ImGUI_SDL;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget);$(OutDir);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)ThirdParty\SDL2-2.0.12\include;$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)ThirdParty\SDL2_image-2.0.5\include;$(SolutionDir)ThirdParty\ImGUI_SDL;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_image-2.0.5\lib\$(PlatformTarget);$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(SolutionDir)int\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
-    <IncludePath>$(SolutionDir)ThirdParty\SDL2-2.0.12\include;$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)ThirdParty\ImGUI_SDL;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget);$(OutDir);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)ThirdParty\SDL2-2.0.12\include;$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)ThirdParty\SDL2_image-2.0.5\include;$(SolutionDir)ThirdParty\ImGUI_SDL;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_image-2.0.5\lib\$(PlatformTarget);$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(SolutionDir)int\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
-    <IncludePath>$(SolutionDir)ThirdParty\SDL2-2.0.12\include;$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)ThirdParty\ImGUI_SDL;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget);$(OutDir);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)ThirdParty\SDL2-2.0.12\include;$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)ThirdParty\SDL2_image-2.0.5\include;$(SolutionDir)ThirdParty\ImGUI_SDL;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_image-2.0.5\lib\$(PlatformTarget);$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -108,15 +108,12 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;ImGui_SDL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;ImGui_SDL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Message>
       </Message>
-      <Command>copy /Y /B "$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformShortName)\SDL2.dll" "$(TargetDir)SDL2.dll"
-copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\SDL2_ttf.dll" "$(TargetDir)SDL2_ttf.dll"
-copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\libfreetype-6.dll" "$(TargetDir)libfreetype-6.dll"
-copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\zlib1.dll" "$(TargetDir)zlib1.dll"</Command>
+      <Command>$(SolutionDir)Build\CopyDLLs.bat "$(SolutionDir)" $(PlatformShortName) "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -133,15 +130,12 @@ copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\zl
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;ImGui_SDL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;ImGui_SDL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Message>
       </Message>
-      <Command>copy /Y /B "$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformShortName)\SDL2.dll" "$(TargetDir)SDL2.dll"
-copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\SDL2_ttf.dll" "$(TargetDir)SDL2_ttf.dll"
-copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\libfreetype-6.dll" "$(TargetDir)libfreetype-6.dll"
-copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\zlib1.dll" "$(TargetDir)zlib1.dll"</Command>
+      <Command>$(SolutionDir)Build\CopyDLLs.bat "$(SolutionDir)" $(PlatformShortName) "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -154,15 +148,12 @@ copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\zl
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;ImGui_SDL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;ImGui_SDL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Message>
       </Message>
-      <Command>copy /Y /B "$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformShortName)\SDL2.dll" "$(TargetDir)SDL2.dll"
-copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\SDL2_ttf.dll" "$(TargetDir)SDL2_ttf.dll"
-copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\libfreetype-6.dll" "$(TargetDir)libfreetype-6.dll"
-copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\zlib1.dll" "$(TargetDir)zlib1.dll"</Command>
+      <Command>$(SolutionDir)Build\CopyDLLs.bat "$(SolutionDir)" $(PlatformShortName) "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -179,15 +170,12 @@ copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\zl
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;ImGui_SDL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;ImGui_SDL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Message>
       </Message>
-      <Command>copy /Y /B "$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformShortName)\SDL2.dll" "$(TargetDir)SDL2.dll"
-copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\SDL2_ttf.dll" "$(TargetDir)SDL2_ttf.dll"
-copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\libfreetype-6.dll" "$(TargetDir)libfreetype-6.dll"
-copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\zlib1.dll" "$(TargetDir)zlib1.dll"</Command>
+      <Command>$(SolutionDir)Build\CopyDLLs.bat "$(SolutionDir)" $(PlatformShortName) "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -196,6 +184,7 @@ copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\zl
     <ClCompile Include="Source\GameTimer.cpp" />
     <ClCompile Include="Source\RogueClient.cpp" />
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Assets\Audio\Placeholder.txt" />
@@ -213,6 +202,7 @@ copy /Y /B "$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformShortName)\zl
     <ClInclude Include="Source\GameTimer.h" />
     <ClInclude Include="Source\RogueClient.h" />
     <ClInclude Include="Source\Utils.h" />
+    <ClInclude Include="Source\Sprite.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
