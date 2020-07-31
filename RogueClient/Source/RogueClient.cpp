@@ -8,7 +8,7 @@ bool RogueClient::Init(const char* windowTitle, int windowWidth, int windowHeigh
 	if (TTF_Init() != 0)
 		return false;
 
-	if (!IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)
+	if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG))
 		return false;
 
 	m_GameWindow = SDL_CreateWindow(windowTitle, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, SDL_WINDOW_SHOWN);
@@ -34,7 +34,16 @@ bool RogueClient::Init(const char* windowTitle, int windowWidth, int windowHeigh
 void RogueClient::LoadResources()
 {
 	m_DiagnosticText = new RenderText(m_Renderer);
-	m_CharactrerSprite = new Sprite("Assets\\Images\\Character.png", 60, 88, 960, 540, m_Renderer);
+
+	static SpriteFrame animFrames[4] =
+	{
+		{ 15, 22, 1, 6 },
+		{ 15, 22, 17, 6 },
+		{ 15, 22, 33, 6 },
+		{ 15, 22, 49, 6 },
+	};
+
+	m_CharactrerSprite = new AnimSprite("Assets\\Images\\SpriteSheet_Character.png", animFrames, 4, 30, 60, 88, 960, 540, m_Renderer); //new Sprite("Assets\\Images\\Character.png", 60, 88, 960, 540, m_Renderer);
 }
 
 void RogueClient::Run()
@@ -136,6 +145,9 @@ void RogueClient::HandleEvents()
 void RogueClient::Update(GameTimer* timer)
 {
 	// TODO: Additional update logic here.
+
+
+	m_CharactrerSprite->Update(timer->GetDeltaTime());
 
 	//m_ImGuiContext->Update();
 }

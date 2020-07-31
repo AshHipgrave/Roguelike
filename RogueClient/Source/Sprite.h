@@ -10,8 +10,8 @@ class Sprite
 public:
 	Sprite(std::string imagePath, int width, int height, int x, int y, SDL_Renderer* renderer);
 
-	void Update(float deltaTime);
-	void Draw();
+	virtual void Update(float deltaTime);
+	virtual void Draw();
 
 	void Destroy();
 
@@ -24,12 +24,11 @@ public:
 	void Move(int newX, int newY);
 	void Resize(int newWidth, int newHeight);
 
-private:
+protected:
 	SDL_Renderer* m_Renderer = nullptr;
 
 	SDL_Texture* m_SpriteTexture = nullptr;
 
-private:
 	SDL_Rect m_SpriteRect = { 0, 0, 0, 0 };
 };
 
