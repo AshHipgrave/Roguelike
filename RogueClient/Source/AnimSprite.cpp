@@ -1,47 +1,86 @@
 #include "AnimSprite.h"
 
-AnimSprite::AnimSprite(std::string imagePath, SpriteFrame frames[], int totalFrames, int fps, int width, int height, int x, int y, SDL_Renderer* renderer)
-	: Sprite(imagePath, width, height, x, y, renderer)
+AnimSprite::AnimSprite(std::string imagePath, std::map<std::string, Animation> animations, std::string startState, int width, int height, int x, int y, SDL_Renderer* renderer)
+	: Sprite(imagePath, width, height, x, y, renderer) 
 {
-	m_AnimFrames = frames;
-	m_TotalFrames = totalFrames;
+	m_SpriteAnimations = animations;
 
-	m_CurrentFrame = 0;
-	m_CurrentFrameCount = 0;
-
-	SpriteFrame* firstFrame = &m_AnimFrames[m_CurrentFrame];
-
-	m_FrameRect.x = firstFrame->x;
-	m_FrameRect.y = firstFrame->y;
-
-	m_FrameRect.w = firstFrame->width;
-	m_FrameRect.h = firstFrame->height;
-
-	m_AnimFPS = fps;
+	m_CurrentState = startState;
+	
+	Reset();
 }
 
 void AnimSprite::Update(float deltaTime)
 {
-	m_CurrentFrameCount++;
-
-	if (m_CurrentFrameCount >= m_AnimFPS)
+	if (!m_bIsIdle)
 	{
-		m_CurrentFrame++;
-		m_CurrentFrame %= m_TotalFrames;
+		m_CurrentFrameDrawCount++;
 
-		SpriteFrame* currentFrame = &m_AnimFrames[m_CurrentFrame];
+		if (m_CurrentFrameDrawCount >= m_AnimFPS)
+		{
+			Animation* currentAnimation = &m_SpriteAnimations[m_CurrentState];
 
-		m_FrameRect.x = currentFrame->x;
-		m_FrameRect.y = currentFrame->y;
+			m_CurrentFrameIdx++;
+			m_CurrentFrameIdx %= currentAnimation->FrameCount;
 
-		m_FrameRect.w = currentFrame->width;
-		m_FrameRect.h = currentFrame->height;
+			AnimationFrame* nextFrame = &currentAnimation->Frames[m_CurrentFrameIdx];
 
-		m_CurrentFrameCount = 0;
+			m_FrameRect.x = nextFrame->X;
+			m_FrameRect.y = nextFrame->Y;
+
+			m_FrameRect.w = nextFrame->Width;
+			m_FrameRect.h = nextFrame->Height;
+
+			m_CurrentFrameDrawCount = 0;
+		}
 	}
 }
 
 void AnimSprite::Draw()
 {
 	SDL_RenderCopy(m_Renderer, m_SpriteTexture, &m_FrameRect, &m_SpriteRect);
+}
+
+void AnimSprite::SetState(std::string state)
+{
+	if (m_CurrentState.compare(state) == 0 && !m_bIsIdle) return; // No state change
+
+	m_CurrentState = state;
+
+	Animation* newState = &m_SpriteAnimations[m_CurrentState];
+	m_AnimFPS = newState->FramesPerSecond;
+
+	m_bIsIdle = false;
+
+	Reset();
+}
+
+std::string AnimSprite::GetState() const
+{
+	return m_CurrentState;
+}
+
+void AnimSprite::SetIdle(bool isIdle)
+{
+	m_bIsIdle = isIdle;
+
+	Reset();
+}
+
+void AnimSprite::Reset()
+{
+	m_CurrentFrameIdx = 0;
+	m_CurrentFrameDrawCount = 0;
+
+	Animation* currentAnimation = &m_SpriteAnimations[m_CurrentState];
+
+	AnimationFrame* currentFrame = &currentAnimation->Frames[m_CurrentFrameIdx];
+
+	m_FrameRect.x = currentFrame->X;
+	m_FrameRect.y = currentFrame->Y;
+
+	m_FrameRect.w = currentFrame->Width;
+	m_FrameRect.h = currentFrame->Height;
+
+	m_AnimFPS = currentAnimation->FramesPerSecond;
 }

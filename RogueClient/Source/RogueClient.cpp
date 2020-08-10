@@ -35,15 +35,7 @@ void RogueClient::LoadResources()
 {
 	m_DiagnosticText = new RenderText(m_Renderer);
 
-	static SpriteFrame animFrames[4] =
-	{
-		{ 15, 22, 1, 6 },
-		{ 15, 22, 17, 6 },
-		{ 15, 22, 33, 6 },
-		{ 15, 22, 49, 6 },
-	};
-
-	m_CharactrerSprite = new AnimSprite("Assets\\Images\\SpriteSheet_Character.png", animFrames, 4, 30, 60, 88, 960, 540, m_Renderer); //new Sprite("Assets\\Images\\Character.png", 60, 88, 960, 540, m_Renderer);
+	m_PlayerCharacter = new Character(960, 540, m_Renderer);
 }
 
 void RogueClient::Run()
@@ -137,6 +129,13 @@ void RogueClient::HandleEvents()
 					break;
 			}
 		}
+		else if (sdlEvent.type == SDL_KEYUP || sdlEvent.type == SDL_KEYDOWN)
+		{
+			if (!m_bIsPaused)
+			{
+				m_PlayerCharacter->HandleInput(&sdlEvent);
+			}
+		}
 
 		//m_ImGuiContext->HandleEvent(&sdlEvent);
 	}
@@ -146,8 +145,7 @@ void RogueClient::Update(GameTimer* timer)
 {
 	// TODO: Additional update logic here.
 
-
-	m_CharactrerSprite->Update(timer->GetDeltaTime());
+	m_PlayerCharacter->Update(timer->GetDeltaTime());
 
 	//m_ImGuiContext->Update();
 }
@@ -162,9 +160,7 @@ void RogueClient::Draw()
 	//m_ImGuiContext->Draw();
 
 	m_DiagnosticText->Draw();
-	m_CharactrerSprite->Draw();
-
-	//TODO: Additional draw logic here.	
+	m_PlayerCharacter->Draw();
 }
 
 void RogueClient::Present()

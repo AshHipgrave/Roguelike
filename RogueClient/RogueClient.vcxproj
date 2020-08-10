@@ -179,6 +179,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Character.cpp" />
     <ClCompile Include="Source\AnimSprite.cpp" />
     <ClCompile Include="Source\ImGuiImpl.cpp" />
     <ClCompile Include="Source\RenderText.cpp" />
@@ -198,6 +199,7 @@
     <Image Include="Assets\Images\SpriteSheet_Transparent.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Character.h" />
     <ClInclude Include="Source\AnimSprite.h" />
     <ClInclude Include="Source\ImGuiImpl.h" />
     <ClInclude Include="Source\RenderText.h" />

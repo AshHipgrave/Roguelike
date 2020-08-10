@@ -7,7 +7,7 @@
 #include "Utils.h"
 #include "GameTimer.h"
 #include "RenderText.h"
-#include "AnimSprite.h"
+#include "Character.h"
 
 #include "ImGuiImpl.h"
 
@@ -33,6 +33,8 @@ protected:
 
 protected:
 	GameTimer m_GameTimer;
+
+	Character* m_PlayerCharacter = nullptr;
 
 	AnimSprite* m_CharactrerSprite = nullptr;
 
