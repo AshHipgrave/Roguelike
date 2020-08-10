@@ -81,5 +81,8 @@
     <ClInclude Include="Source\Character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

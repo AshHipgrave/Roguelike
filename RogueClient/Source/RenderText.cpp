@@ -1,18 +1,11 @@
 #include "RenderText.h"
 
-RenderText::RenderText(SDL_Renderer* renderer)
+RenderText::RenderText(const char* text, int xPos, int yPos, const char* fontName, const int fontSize, SDL_Color textColour)
 {
-	m_Renderer = renderer;
-}
-
-RenderText::RenderText(const char* text, int xPos, int yPos, SDL_Renderer* renderer, const char* fontName, const int fontSize, SDL_Color textColour)
-{
-	m_Renderer = renderer;
-
 	TTF_Font* textFont = TTF_OpenFont(fontName, fontSize);
 
 	m_TextSurface = TTF_RenderText_Blended(textFont, text, textColour);
-	m_TextTexture = SDL_CreateTextureFromSurface(renderer, m_TextSurface);
+	m_TextTexture = SDL_CreateTextureFromSurface(RenderImpl::Instance().GetRenderer(), m_TextSurface);
 
 	m_DestRect.x = xPos;
 	m_DestRect.y = yPos;
@@ -38,7 +31,7 @@ RenderText::~RenderText()
 
 void RenderText::Draw()
 {
-	SDL_RenderCopy(m_Renderer, m_TextTexture, NULL, &m_DestRect);
+	SDL_RenderCopy(RenderImpl::Instance().GetRenderer(), m_TextTexture, NULL, &m_DestRect);
 }
 
 void RenderText::SetText(const char* text, const char* fontName, const int fontSize, SDL_Color textColour)
@@ -56,7 +49,7 @@ void RenderText::SetText(const char* text, const char* fontName, const int fontS
 	TTF_Font* textFont = TTF_OpenFont(fontName, fontSize);
 
 	m_TextSurface = TTF_RenderText_Blended(textFont, text, textColour);
-	m_TextTexture = SDL_CreateTextureFromSurface(m_Renderer, m_TextSurface);
+	m_TextTexture = SDL_CreateTextureFromSurface(RenderImpl::Instance().GetRenderer(), m_TextSurface);
 
 	m_DestRect.w = m_TextSurface->w; 
 	m_DestRect.h = m_TextSurface->h;

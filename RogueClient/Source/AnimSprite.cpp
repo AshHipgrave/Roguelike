@@ -1,7 +1,7 @@
 #include "AnimSprite.h"
 
-AnimSprite::AnimSprite(std::string imagePath, std::map<std::string, Animation> animations, std::string startState, int width, int height, int x, int y, SDL_Renderer* renderer)
-	: Sprite(imagePath, width, height, x, y, renderer) 
+AnimSprite::AnimSprite(std::string imagePath, std::map<std::string, Animation> animations, std::string startState, int width, int height, int x, int y)
+	: Sprite(imagePath, width, height, x, y) 
 {
 	m_SpriteAnimations = animations;
 
@@ -38,7 +38,7 @@ void AnimSprite::Update(float deltaTime)
 
 void AnimSprite::Draw()
 {
-	SDL_RenderCopy(m_Renderer, m_SpriteTexture, &m_FrameRect, &m_SpriteRect);
+	SDL_RenderCopy(RenderImpl::Instance().GetRenderer(), m_SpriteTexture, &m_FrameRect, &m_SpriteRect);
 }
 
 void AnimSprite::SetState(std::string state)

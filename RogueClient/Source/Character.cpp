@@ -1,9 +1,7 @@
 #include "Character.h"
 
-Character::Character(int x, int y, SDL_Renderer* renderer)
+Character::Character(int x, int y)
 {
-	m_Renderer = renderer;
-
 	static std::map<std::string, Animation> characterAnimations;
 
 	characterAnimations["WalkDown"] = WalkDownAnimation;
@@ -11,7 +9,7 @@ Character::Character(int x, int y, SDL_Renderer* renderer)
 	characterAnimations["WalkUp"] = WalkUpAnimation;
 	characterAnimations["WalkLeft"] = WalkLeftAnimation;
 
-	m_CharacterSprite = new AnimSprite("Assets\\Images\\SpriteSheet_Character.png", characterAnimations, "WalkDown", 60, 88, x, y, m_Renderer);
+	m_CharacterSprite = new AnimSprite("Assets\\Images\\SpriteSheet_Character.png", characterAnimations, "WalkDown", 60, 88, x, y);
 	m_CharacterSprite->SetIdle(true);
 
 	m_XPosition = x;

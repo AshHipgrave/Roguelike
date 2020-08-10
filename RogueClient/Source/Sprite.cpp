@@ -1,12 +1,10 @@
 #include "Sprite.h"
 
-Sprite::Sprite(std::string imagePath, int width, int height, int x, int y, SDL_Renderer* renderer)
+Sprite::Sprite(std::string imagePath, int width, int height, int x, int y)
 {
-	m_Renderer = renderer;
-
 	SDL_Surface* spriteSurface = IMG_Load(imagePath.c_str());
 
-	m_SpriteTexture = SDL_CreateTextureFromSurface(m_Renderer, spriteSurface);
+	m_SpriteTexture = SDL_CreateTextureFromSurface(RenderImpl::Instance().GetRenderer(), spriteSurface);
 
 	m_SpriteRect = { x, y, width, height };
 
@@ -19,7 +17,7 @@ void Sprite::Update(float deltaTime)
 
 void Sprite::Draw()
 {
-	SDL_RenderCopy(m_Renderer, m_SpriteTexture, NULL, &m_SpriteRect);
+	SDL_RenderCopy(RenderImpl::Instance().GetRenderer(), m_SpriteTexture, NULL, &m_SpriteRect);
 }
 
 void Sprite::Destroy()

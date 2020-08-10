@@ -5,10 +5,12 @@
 #include <imgui.h>
 #include <imgui_sdl.h>
 
+#include "Renderer.h"
+
 class ImGuiImpl
 {
 public:
-	void Init(SDL_Renderer* renderer, int windowWidth, int windowHeight);
+	void Init(int windowWidth, int windowHeight);
 	void Destroy();
 
 	void HandleEvent(SDL_Event* sdlEvent);

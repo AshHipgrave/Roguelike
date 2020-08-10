@@ -5,11 +5,13 @@
 
 #include <iostream>
 
+#include "Renderer.h"
+
 class RenderText
 {
 public:
-	RenderText(SDL_Renderer* renderer);
-	RenderText(const char* text, int xPos, int yPos, SDL_Renderer* renderer, const char* fontName = "C:\\Windows\\Fonts\\arial.ttf", const int fontSize = 18, SDL_Color textColour = { 0, 0, 0, 255 });
+	RenderText() {}
+	RenderText(const char* text, int xPos, int yPos, const char* fontName = "C:\\Windows\\Fonts\\arial.ttf", const int fontSize = 18, SDL_Color textColour = { 0, 0, 0, 255 });
 	
 	~RenderText();
 
@@ -19,8 +21,6 @@ public:
 	void SetPosition(int xPos, int yPos);
 
 private:
-	SDL_Renderer* m_Renderer = nullptr;
-
 	SDL_Surface* m_TextSurface = nullptr;
 	SDL_Texture* m_TextTexture = nullptr;
 

@@ -34,7 +34,7 @@ struct Animation
 class AnimSprite : public Sprite
 {
 public:
-	AnimSprite(std::string imagePath, std::map<std::string, Animation> animations, std::string startState, int width, int height, int x, int y, SDL_Renderer* renderer);
+	AnimSprite(std::string imagePath, std::map<std::string, Animation> animations, std::string startState, int width, int height, int x, int y);
 
 	virtual void Update(float deltaTime) override;
 	virtual void Draw() override;

@@ -5,10 +5,12 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+#include "Renderer.h"
+
 class Sprite
 {
 public:
-	Sprite(std::string imagePath, int width, int height, int x, int y, SDL_Renderer* renderer);
+	Sprite(std::string imagePath, int width, int height, int x, int y);
 
 	virtual void Update(float deltaTime);
 	virtual void Draw();
@@ -25,8 +27,6 @@ public:
 	void Resize(int newWidth, int newHeight);
 
 protected:
-	SDL_Renderer* m_Renderer = nullptr;
-
 	SDL_Texture* m_SpriteTexture = nullptr;
 
 	SDL_Rect m_SpriteRect = { 0, 0, 0, 0 };

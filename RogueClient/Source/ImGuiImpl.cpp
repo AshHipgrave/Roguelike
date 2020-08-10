@@ -1,9 +1,9 @@
 #include "ImGuiImpl.h"
 
-void ImGuiImpl::Init(SDL_Renderer* renderer, int windowWidth, int windowHeight)
+void ImGuiImpl::Init(int windowWidth, int windowHeight)
 {
 	ImGui::CreateContext();
-	ImGuiSDL::Initialize(renderer, windowWidth, windowHeight);
+	ImGuiSDL::Initialize(RenderImpl::Instance().GetRenderer(), windowWidth, windowHeight);
 
 	ImGuiIO& io = ImGui::GetIO();
 	io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;

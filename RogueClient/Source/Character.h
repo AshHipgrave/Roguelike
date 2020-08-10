@@ -11,7 +11,7 @@
 class Character
 {
 public:
-	Character(int x, int y, SDL_Renderer* renderer);
+	Character(int x, int y);
 
 	void HandleInput(SDL_Event* event);
 
@@ -20,8 +20,6 @@ public:
 	void Draw();
 
 private:
-	SDL_Renderer* m_Renderer = nullptr;
-
 	AnimSprite* m_CharacterSprite = nullptr;
 
 private:

@@ -17,9 +17,12 @@ bool RogueClient::Init(const char* windowTitle, int windowWidth, int windowHeigh
 	if (m_GameWindow == nullptr)
 		return false;
 
-	m_Renderer = SDL_CreateRenderer(m_GameWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	//m_Renderer = SDL_CreateRenderer(m_GameWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-	SDL_SetRenderDrawColor(m_Renderer, 100, 149, 237, 255);
+	if (!RenderImpl::Instance().Init(m_GameWindow))
+		return false;
+
+	SDL_SetRenderDrawColor(RenderImpl::Instance().GetRenderer(), 100, 149, 237, 255);
 
 	SDL_EventState(SDL_SYSWMEVENT, SDL_ENABLE);
 
@@ -33,9 +36,9 @@ bool RogueClient::Init(const char* windowTitle, int windowWidth, int windowHeigh
 
 void RogueClient::LoadResources()
 {
-	m_DiagnosticText = new RenderText(m_Renderer);
+	m_DiagnosticText = new RenderText();
 
-	m_PlayerCharacter = new Character(960, 540, m_Renderer);
+	m_PlayerCharacter = new Character(960, 540);
 }
 
 void RogueClient::Run()
@@ -152,7 +155,7 @@ void RogueClient::Update(GameTimer* timer)
 
 void RogueClient::Clear()
 {
-	SDL_RenderClear(m_Renderer);
+	SDL_RenderClear(RenderImpl::Instance().GetRenderer());
 }
 
 void RogueClient::Draw()
@@ -165,7 +168,7 @@ void RogueClient::Draw()
 
 void RogueClient::Present()
 {
-	SDL_RenderPresent(m_Renderer);
+	SDL_RenderPresent(RenderImpl::Instance().GetRenderer());
 }
 
 void RogueClient::Exit()
@@ -176,11 +179,11 @@ void RogueClient::Exit()
 		m_ImGuiContext = nullptr;
 	}
 
-	if (m_Renderer != nullptr)
+	/*if (m_Renderer != nullptr)
 	{
 		SDL_DestroyRenderer(m_Renderer);
 		m_Renderer = nullptr;
-	}
+	}*/
 	
 	if (m_GameWindow != nullptr)
 	{

@@ -8,6 +8,7 @@
 #include "GameTimer.h"
 #include "RenderText.h"
 #include "Character.h"
+#include "Renderer.h"
 
 #include "ImGuiImpl.h"
 
@@ -28,10 +29,10 @@ public:
 
 	void Exit();
 
-protected:
+private:
 	void CalculateFrameStats();
 
-protected:
+private:
 	GameTimer m_GameTimer;
 
 	Character* m_PlayerCharacter = nullptr;
@@ -40,7 +41,7 @@ protected:
 
 	ImGuiImpl* m_ImGuiContext = nullptr;
 	
-	SDL_Renderer* m_Renderer = nullptr;
+	//SDL_Renderer* m_Renderer = nullptr;
 	SDL_Window* m_GameWindow = nullptr;
 
 	RenderText* m_DiagnosticText = nullptr;
