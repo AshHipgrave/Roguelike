@@ -5,7 +5,7 @@
 #include <imgui.h>
 #include <imgui_sdl.h>
 
-#include "Renderer.h"
+#include "RenderImpl.h"
 
 class ImGuiImpl
 {

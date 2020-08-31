@@ -29,6 +29,5 @@ private:
 	SDL_Renderer* m_Renderer = nullptr;
 
 private:
-	RenderImpl();
+	RenderImpl() { }
 };
-

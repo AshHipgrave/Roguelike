@@ -5,7 +5,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
-#include "Renderer.h"
+#include "RenderImpl.h"
 
 class Sprite
 {

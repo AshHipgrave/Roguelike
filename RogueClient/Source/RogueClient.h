@@ -8,7 +8,7 @@
 #include "GameTimer.h"
 #include "RenderText.h"
 #include "Character.h"
-#include "Renderer.h"
+#include "RenderImpl.h"
 
 #include "ImGuiImpl.h"
 
