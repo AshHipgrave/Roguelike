@@ -187,6 +187,7 @@
     <ClCompile Include="Source\RogueClient.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Sprite.cpp" />
+    <ClCompile Include="Source\Vector2f.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Assets\Audio\Placeholder.txt" />
@@ -208,6 +209,10 @@
     <ClInclude Include="Source\RogueClient.h" />
     <ClInclude Include="Source\Utils.h" />
     <ClInclude Include="Source\Sprite.h" />
+    <ClInclude Include="Source\Vector2f.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Assets\Data\Characters\Player.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

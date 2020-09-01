@@ -7,6 +7,7 @@
 
 #include "GameTimer.h"
 #include "AnimSprite.h"
+#include "Vector2f.h"
 
 class Character
 {
@@ -23,11 +24,10 @@ private:
 	AnimSprite* m_CharacterSprite = nullptr;
 
 private:
-	int m_XPosition = 0;
+	Vector2f m_Velocity;
+	Vector2f m_Position;
 
-	int m_YPosition = 0;
-
-	const float MovementSpeed = 2.0f;
+	const float MovementSpeed = 1.0f;
 
 private:
 	AnimationFrame WalkDownAnimationFrames[4] =
