@@ -127,13 +127,6 @@ void RogueClient::HandleEvents()
 					break;
 			}
 		}
-		else if (sdlEvent.type == SDL_KEYUP || sdlEvent.type == SDL_KEYDOWN)
-		{
-			if (!m_bIsPaused)
-			{
-				m_PlayerCharacter->HandleInput(&sdlEvent);
-			}
-		}
 
 		//m_ImGuiContext->HandleEvent(&sdlEvent);
 	}
@@ -142,6 +135,8 @@ void RogueClient::HandleEvents()
 void RogueClient::Update(GameTimer* timer)
 {
 	// TODO: Additional update logic here.
+
+	InputManager::Instance().Update();
 
 	m_PlayerCharacter->Update(timer->GetDeltaTime());
 

@@ -200,6 +200,7 @@
     <Image Include="Assets\Images\SpriteSheet_Transparent.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\InputManager.h" />
     <ClInclude Include="Source\GameWindow.h" />
     <ClInclude Include="Source\RenderImpl.h" />
     <ClInclude Include="Source\Character.h" />

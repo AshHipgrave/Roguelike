@@ -1,7 +1,5 @@
 #include "Character.h"
 
-#include <iostream>
-
 Character::Character(int x, int y)
 {
 	static std::map<std::string, Animation> characterAnimations;
@@ -18,48 +16,51 @@ Character::Character(int x, int y)
 	m_Position.Y = y;
 }
 
-void Character::HandleInput(SDL_Event* event)
+void Character::HandleInput()
 {
-	if (event->type == SDL_KEYDOWN)
-	{
-		switch (event->key.keysym.sym)
-		{
-			case SDLK_w:
-				m_Velocity.Y = -MovementSpeed;
-				m_CharacterSprite->SetState("WalkUp");
-				break;
-			case SDLK_s:
-				m_Velocity.Y = MovementSpeed;
-				m_CharacterSprite->SetState("WalkDown");
-				break;
-			case SDLK_a:
-				m_Velocity.X = -MovementSpeed;
-				m_CharacterSprite->SetState("WalkLeft");
-				break;
-			case SDLK_d:
-				m_Velocity.X = MovementSpeed;
-				m_CharacterSprite->SetState("WalkRight");
-				break;
-			default:
-				break;
-		}
-	}
-	else if (event->type == SDL_KEYUP)
-	{
-		m_Velocity.X = 0;
-		m_Velocity.Y = 0;
+	InputManager& inputManager = InputManager::Instance();
 
-		m_CharacterSprite->SetIdle(true);
+	m_Velocity.X = 0.0f;
+	m_Velocity.Y = 0.0f;
+
+	if (inputManager.IsKeyDown(SDL_SCANCODE_W))
+	{
+		m_Velocity.Y = -MovementSpeed;
+		m_CharacterSprite->SetState("WalkUp");
+	}
+	else if (inputManager.IsKeyDown(SDL_SCANCODE_S))
+	{
+		m_Velocity.Y = MovementSpeed;
+		m_CharacterSprite->SetState("WalkDown");
+	}
+	else if (inputManager.IsKeyDown(SDL_SCANCODE_A))
+	{
+		m_Velocity.X = -MovementSpeed;
+		m_CharacterSprite->SetState("WalkLeft");
+	}
+	else if (inputManager.IsKeyDown(SDL_SCANCODE_D))
+	{
+		m_Velocity.X = MovementSpeed;
+		m_CharacterSprite->SetState("WalkRight");
 	}
 }
 
 void Character::Update(float deltaTime)
 {
+	HandleInput();
+
 	m_CharacterSprite->Update(deltaTime);
 
-	m_Position += m_Velocity;
+	if (m_Velocity.X != 0.0f || m_Velocity.Y != 0.0f)
+	{
+		m_Position += m_Velocity;
 
-	m_CharacterSprite->Move(m_Position.X, m_Position.Y);
+		m_CharacterSprite->Move(m_Position.X, m_Position.Y);
+	}
+	else if (!m_CharacterSprite->IsIdle())
+	{
+		m_CharacterSprite->SetIdle(true);
+	}
 }
 
 void Character::Draw()

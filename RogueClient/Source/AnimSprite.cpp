@@ -60,6 +60,11 @@ std::string AnimSprite::GetState() const
 	return m_CurrentState;
 }
 
+bool AnimSprite::IsIdle() const
+{
+	return m_bIsIdle;
+}
+
 void AnimSprite::SetIdle(bool isIdle)
 {
 	m_bIsIdle = isIdle;
@@ -69,7 +74,7 @@ void AnimSprite::SetIdle(bool isIdle)
 
 void AnimSprite::Reset()
 {
-	m_CurrentFrameIdx = 0;
+	m_CurrentFrameIdx = m_bIsIdle ? 0 : 1; // First frame in all anims is the idle state. If we're not idle skip this frame (Otherwise the character appears to 'glide' when movement starts)
 	m_CurrentFrameDrawCount = 0;
 
 	Animation* currentAnimation = &m_SpriteAnimations[m_CurrentState];

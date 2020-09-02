@@ -42,6 +42,7 @@ public:
 	void SetState(std::string state);
 	std::string GetState() const;
 
+	bool IsIdle() const;
 	void SetIdle(bool isIdle);
 
 	void Reset();

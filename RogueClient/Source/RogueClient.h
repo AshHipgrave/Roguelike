@@ -10,6 +10,7 @@
 #include "Character.h"
 #include "RenderImpl.h"
 #include "GameWindow.h"
+#include "InputManager.h"
 
 #include "ImGuiImpl.h"
 

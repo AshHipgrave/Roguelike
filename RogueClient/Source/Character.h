@@ -8,13 +8,14 @@
 #include "GameTimer.h"
 #include "AnimSprite.h"
 #include "Vector2f.h"
+#include "InputManager.h"
 
 class Character
 {
 public:
 	Character(int x, int y);
 
-	void HandleInput(SDL_Event* event);
+	void HandleInput();
 
 	void Update(float deltaTime);
 
