@@ -11,15 +11,10 @@ bool RogueClient::Init(const char* windowTitle, int windowWidth, int windowHeigh
 	if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG))
 		return false;
 
-	m_GameWindow = SDL_CreateWindow(windowTitle, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, SDL_WINDOW_SHOWN);
-	SDL_SetWindowResizable(m_GameWindow, SDL_TRUE);
-
-	if (m_GameWindow == nullptr)
+	if (!GameWindow::Instance().Init(windowTitle, windowWidth, windowHeight))
 		return false;
 
-	//m_Renderer = SDL_CreateRenderer(m_GameWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-
-	if (!RenderImpl::Instance().Init(m_GameWindow))
+	if (!RenderImpl::Instance().Init())
 		return false;
 
 	SDL_SetRenderDrawColor(RenderImpl::Instance().GetRenderer(), 100, 149, 237, 255);
@@ -123,7 +118,7 @@ void RogueClient::HandleEvents()
 
 				case SDL_WINDOWEVENT_RESIZED:
 					int x, y;
-					SDL_GetWindowSize(m_GameWindow, &x, &y);
+					SDL_GetWindowSize(GameWindow::Instance().GetGameWindow(), &x, &y);
 
 					x /= 2;
 					y /= 2;
@@ -177,18 +172,6 @@ void RogueClient::Exit()
 	{
 		m_ImGuiContext->Destroy();
 		m_ImGuiContext = nullptr;
-	}
-
-	/*if (m_Renderer != nullptr)
-	{
-		SDL_DestroyRenderer(m_Renderer);
-		m_Renderer = nullptr;
-	}*/
-	
-	if (m_GameWindow != nullptr)
-	{
-		SDL_DestroyWindow(m_GameWindow);
-		m_GameWindow = nullptr;
 	}
 
 	TTF_Quit();

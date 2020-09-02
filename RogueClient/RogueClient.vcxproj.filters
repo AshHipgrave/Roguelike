@@ -90,6 +90,9 @@
     <ClInclude Include="Source\Vector2f.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\GameWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Assets\Data\Characters\Player.xml" />

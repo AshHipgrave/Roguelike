@@ -9,6 +9,7 @@
 #include "RenderText.h"
 #include "Character.h"
 #include "RenderImpl.h"
+#include "GameWindow.h"
 
 #include "ImGuiImpl.h"
 
@@ -40,9 +41,6 @@ private:
 	AnimSprite* m_CharactrerSprite = nullptr;
 
 	ImGuiImpl* m_ImGuiContext = nullptr;
-	
-	//SDL_Renderer* m_Renderer = nullptr;
-	SDL_Window* m_GameWindow = nullptr;
 
 	RenderText* m_DiagnosticText = nullptr;
 
