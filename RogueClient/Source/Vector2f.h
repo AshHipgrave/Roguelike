@@ -185,6 +185,10 @@ public:
 	{
 		return (vec1.X * vec2.X) + (vec1.Y * vec2.Y);
 	}
+
+public:
+	static const Vector2f Zero;
+	static const Vector2f One;
 };
 
 inline std::ostream& operator<<(std::ostream& outputStream, const Vector2f& vector)

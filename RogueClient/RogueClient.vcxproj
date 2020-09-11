@@ -74,29 +74,29 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(SolutionDir)int\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
-    <IncludePath>$(SolutionDir)ThirdParty\SDL2-2.0.12\include;$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)ThirdParty\SDL2_image-2.0.5\include;$(SolutionDir)ThirdParty\ImGUI_SDL;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_image-2.0.5\lib\$(PlatformTarget);$(OutDir);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)ThirdParty\SDL2-2.0.12\include;$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)ThirdParty\SDL2_image-2.0.5\include;$(SolutionDir)ThirdParty\ImGUI_SDL;$(SolutionDir)ThirdParty\tmxlite-1.2.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_image-2.0.5\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\tinyxml2-8.0.0\lib\$(PlatformTarget)\;$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(SolutionDir)int\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
-    <IncludePath>$(SolutionDir)ThirdParty\SDL2-2.0.12\include;$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)ThirdParty\SDL2_image-2.0.5\include;$(SolutionDir)ThirdParty\ImGUI_SDL;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_image-2.0.5\lib\$(PlatformTarget);$(OutDir);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)ThirdParty\SDL2-2.0.12\include;$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)ThirdParty\SDL2_image-2.0.5\include;$(SolutionDir)ThirdParty\ImGUI_SDL;$(SolutionDir)ThirdParty\tmxlite-1.2.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_image-2.0.5\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\tinyxml2-8.0.0\lib\$(PlatformTarget)\;$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(SolutionDir)int\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
-    <IncludePath>$(SolutionDir)ThirdParty\SDL2-2.0.12\include;$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)ThirdParty\SDL2_image-2.0.5\include;$(SolutionDir)ThirdParty\ImGUI_SDL;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_image-2.0.5\lib\$(PlatformTarget);$(OutDir);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)ThirdParty\SDL2-2.0.12\include;$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)ThirdParty\SDL2_image-2.0.5\include;$(SolutionDir)ThirdParty\ImGUI_SDL;$(SolutionDir)ThirdParty\tmxlite-1.2.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_image-2.0.5\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\tinyxml2-8.0.0\lib\$(PlatformTarget)\;$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(SolutionDir)int\$(ProjectName)\$(Configuration)\$(Platform)\</IntDir>
-    <IncludePath>$(SolutionDir)ThirdParty\SDL2-2.0.12\include;$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)ThirdParty\SDL2_image-2.0.5\include;$(SolutionDir)ThirdParty\ImGUI_SDL;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_image-2.0.5\lib\$(PlatformTarget);$(OutDir);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)ThirdParty\SDL2-2.0.12\include;$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\include;$(SolutionDir)ThirdParty\SDL2_image-2.0.5\include;$(SolutionDir)ThirdParty\ImGUI_SDL;$(SolutionDir)ThirdParty\tmxlite-1.2.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)ThirdParty\SDL2-2.0.12\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_ttf-2.0.15\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\SDL2_image-2.0.5\lib\$(PlatformTarget);$(SolutionDir)ThirdParty\tinyxml2-8.0.0\lib\$(PlatformTarget)\;$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -108,7 +108,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;ImGui_SDL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;ImGui_SDL.lib;tmxlite.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Message>
@@ -130,7 +130,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;ImGui_SDL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;ImGui_SDL.lib;tmxlite.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Message>
@@ -148,7 +148,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;ImGui_SDL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;ImGui_SDL.lib;tmxlite.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Message>
@@ -170,7 +170,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;ImGui_SDL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;ImGui_SDL.lib;tmxlite.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Message>
@@ -179,6 +179,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Level.cpp" />
     <ClCompile Include="Source\Character.cpp" />
     <ClCompile Include="Source\AnimSprite.cpp" />
     <ClCompile Include="Source\ImGuiImpl.cpp" />
@@ -188,6 +189,7 @@
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Sprite.cpp" />
     <ClCompile Include="Source\Vector2f.cpp" />
+    <ClCompile Include="Source\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Assets\Audio\Placeholder.txt" />
@@ -200,6 +202,7 @@
     <Image Include="Assets\Images\SpriteSheet_Transparent.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Level.h" />
     <ClInclude Include="Source\InputManager.h" />
     <ClInclude Include="Source\GameWindow.h" />
     <ClInclude Include="Source\RenderImpl.h" />
@@ -212,6 +215,7 @@
     <ClInclude Include="Source\Utils.h" />
     <ClInclude Include="Source\Sprite.h" />
     <ClInclude Include="Source\Vector2f.h" />
+    <ClInclude Include="Source\TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Assets\Data\Characters\Player.xml" />

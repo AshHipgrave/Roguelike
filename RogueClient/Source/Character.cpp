@@ -51,7 +51,7 @@ void Character::Update(float deltaTime)
 
 	m_CharacterSprite->Update(deltaTime);
 
-	if (m_Velocity.X != 0.0f || m_Velocity.Y != 0.0f)
+	if (m_Velocity != Vector2f::Zero)
 	{
 		m_Position += m_Velocity;
 

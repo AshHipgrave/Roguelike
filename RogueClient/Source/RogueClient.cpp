@@ -33,6 +33,10 @@ void RogueClient::LoadResources()
 {
 	m_DiagnosticText = new RenderText();
 
+	m_CurrentLevel = new Level("MainLevel");
+	m_CurrentLevel->Load("Assets\\Data\\Maps\\sample_map.tmx");
+	//m_CurrentLevel->Load("Assets\\Data\\Maps\\test_map.tmx");
+
 	m_PlayerCharacter = new Character(960, 540);
 }
 
@@ -138,6 +142,8 @@ void RogueClient::Update(GameTimer* timer)
 
 	InputManager::Instance().Update();
 
+	m_CurrentLevel->Update(timer->GetDeltaTime());
+
 	m_PlayerCharacter->Update(timer->GetDeltaTime());
 
 	//m_ImGuiContext->Update();
@@ -152,8 +158,10 @@ void RogueClient::Draw()
 {
 	//m_ImGuiContext->Draw();
 
+	m_CurrentLevel->Draw();
+	m_PlayerCharacter->Draw(); 
+	
 	m_DiagnosticText->Draw();
-	m_PlayerCharacter->Draw();
 }
 
 void RogueClient::Present()

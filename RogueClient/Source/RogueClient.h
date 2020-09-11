@@ -5,6 +5,7 @@
 #include <SDL_image.h>
 
 #include "Utils.h"
+#include "Level.h"
 #include "GameTimer.h"
 #include "RenderText.h"
 #include "Character.h"
@@ -36,6 +37,8 @@ private:
 
 private:
 	GameTimer m_GameTimer;
+
+	Level* m_CurrentLevel = nullptr;
 
 	Character* m_PlayerCharacter = nullptr;
 

@@ -42,6 +42,12 @@
     <ClCompile Include="Source\Vector2f.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TextureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Assets\Fonts\Placeholder.txt" />
@@ -94,6 +100,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\InputManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TextureManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
