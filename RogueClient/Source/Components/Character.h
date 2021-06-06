@@ -2,13 +2,13 @@
 
 #include <SDL.h>
 
-#include <utility>
 #include <map>
+#include <utility>
 
-#include "GameTimer.h"
-#include "AnimSprite.h"
-#include "Vector2f.h"
-#include "InputManager.h"
+#include "Math/Vector2f.h"
+#include "Core/GameTimer.h"
+#include "Systems/InputManager.h"
+#include "Components/AnimSprite.h"
 
 class Character
 {
@@ -28,7 +28,7 @@ private:
 	Vector2f m_Velocity;
 	Vector2f m_Position;
 
-	const float MovementSpeed = 1.0f;
+	const float MovementSpeed = 0.2f;
 
 private:
 	AnimationFrame WalkDownAnimationFrames[4] =

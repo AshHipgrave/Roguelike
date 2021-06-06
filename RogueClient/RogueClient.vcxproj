@@ -144,6 +144,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)\RogueClient\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -179,17 +180,20 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Level.cpp" />
-    <ClCompile Include="Source\Character.cpp" />
-    <ClCompile Include="Source\AnimSprite.cpp" />
-    <ClCompile Include="Source\ImGuiImpl.cpp" />
-    <ClCompile Include="Source\RenderText.cpp" />
-    <ClCompile Include="Source\GameTimer.cpp" />
-    <ClCompile Include="Source\RogueClient.cpp" />
+    <ClCompile Include="Source\Core\Level.cpp" />
+    <ClCompile Include="Source\Components\Character.cpp" />
+    <ClCompile Include="Source\Components\AnimSprite.cpp" />
+    <ClCompile Include="Source\Systems\GameWindow.cpp" />
+    <ClCompile Include="Source\Systems\ImGuiImpl.cpp" />
+    <ClCompile Include="Source\Components\RenderText.cpp" />
+    <ClCompile Include="Source\Core\GameTimer.cpp" />
+    <ClCompile Include="Source\Core\RogueClient.cpp" />
     <ClCompile Include="Source\Main.cpp" />
-    <ClCompile Include="Source\Sprite.cpp" />
-    <ClCompile Include="Source\Vector2f.cpp" />
-    <ClCompile Include="Source\TextureManager.cpp" />
+    <ClCompile Include="Source\Components\Sprite.cpp" />
+    <ClCompile Include="Source\Math\Vector2f.cpp" />
+    <ClCompile Include="Source\Systems\InputManager.cpp" />
+    <ClCompile Include="Source\Systems\RenderImpl.cpp" />
+    <ClCompile Include="Source\Systems\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Assets\Audio\Placeholder.txt" />
@@ -202,20 +206,20 @@
     <Image Include="Assets\Images\SpriteSheet_Transparent.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Level.h" />
-    <ClInclude Include="Source\InputManager.h" />
-    <ClInclude Include="Source\GameWindow.h" />
-    <ClInclude Include="Source\RenderImpl.h" />
-    <ClInclude Include="Source\Character.h" />
-    <ClInclude Include="Source\AnimSprite.h" />
-    <ClInclude Include="Source\ImGuiImpl.h" />
-    <ClInclude Include="Source\RenderText.h" />
-    <ClInclude Include="Source\GameTimer.h" />
-    <ClInclude Include="Source\RogueClient.h" />
-    <ClInclude Include="Source\Utils.h" />
-    <ClInclude Include="Source\Sprite.h" />
-    <ClInclude Include="Source\Vector2f.h" />
-    <ClInclude Include="Source\TextureManager.h" />
+    <ClInclude Include="Source\Core\Level.h" />
+    <ClInclude Include="Source\Systems\InputManager.h" />
+    <ClInclude Include="Source\Systems\GameWindow.h" />
+    <ClInclude Include="Source\Systems\RenderImpl.h" />
+    <ClInclude Include="Source\Components\Character.h" />
+    <ClInclude Include="Source\Components\AnimSprite.h" />
+    <ClInclude Include="Source\Systems\ImGuiImpl.h" />
+    <ClInclude Include="Source\Components\RenderText.h" />
+    <ClInclude Include="Source\Core\GameTimer.h" />
+    <ClInclude Include="Source\Core\RogueClient.h" />
+    <ClInclude Include="Source\Core\Utils.h" />
+    <ClInclude Include="Source\Components\Sprite.h" />
+    <ClInclude Include="Source\Math\Vector2f.h" />
+    <ClInclude Include="Source\Systems\TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Assets\Data\Characters\Player.xml" />

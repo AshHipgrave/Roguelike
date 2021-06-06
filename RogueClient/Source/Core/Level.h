@@ -9,8 +9,8 @@
 #include <tmxlite\Map.hpp>
 #include <tmxlite\TileLayer.hpp>
 
-#include "RenderImpl.h"
-#include "TextureManager.h"
+#include "Systems/RenderImpl.h"
+#include "Systems/TextureManager.h"
 
 struct Tile
 {

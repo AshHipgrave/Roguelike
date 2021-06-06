@@ -1,4 +1,4 @@
-#include "RogueClient.h"
+#include "Core/RogueClient.h"
 
 #include <Windows.h>
 
@@ -9,7 +9,7 @@ int main(int argc, char* args[])
 
 	RogueClient client;
 
-	if (!client.Init("Game Window", 1027, 768))
+	if (!client.Init("Game Window", 1920, 1080))
 		return 1;
 
 	client.Run();

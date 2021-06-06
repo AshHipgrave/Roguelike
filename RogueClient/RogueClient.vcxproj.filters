@@ -18,34 +18,43 @@
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\RogueClient.cpp">
+    <ClCompile Include="Source\Components\AnimSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameTimer.cpp">
+    <ClCompile Include="Source\Components\Character.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\RenderText.cpp">
+    <ClCompile Include="Source\Core\GameTimer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ImGuiImpl.cpp">
+    <ClCompile Include="Source\Systems\ImGuiImpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Sprite.cpp">
+    <ClCompile Include="Source\Core\Level.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AnimSprite.cpp">
+    <ClCompile Include="Source\Components\RenderText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Character.cpp">
+    <ClCompile Include="Source\Components\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Vector2f.cpp">
+    <ClCompile Include="Source\Systems\TextureManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Level.cpp">
+    <ClCompile Include="Source\Math\Vector2f.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\TextureManager.cpp">
+    <ClCompile Include="Source\Core\RogueClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\GameWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\RenderImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -66,46 +75,46 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\RogueClient.h">
+    <ClInclude Include="Source\Components\AnimSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameTimer.h">
+    <ClInclude Include="Source\Components\Character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\RenderText.h">
+    <ClInclude Include="Source\Core\GameTimer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Utils.h">
+    <ClInclude Include="Source\Systems\GameWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ImGuiImpl.h">
+    <ClInclude Include="Source\Systems\ImGuiImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Sprite.h">
+    <ClInclude Include="Source\Core\Level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\AnimSprite.h">
+    <ClInclude Include="Source\Systems\RenderImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Character.h">
+    <ClInclude Include="Source\Components\RenderText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\RenderImpl.h">
+    <ClInclude Include="Source\Components\Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Vector2f.h">
+    <ClInclude Include="Source\Systems\TextureManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameWindow.h">
+    <ClInclude Include="Source\Math\Vector2f.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\InputManager.h">
+    <ClInclude Include="Source\Systems\InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Level.h">
+    <ClInclude Include="Source\Core\Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\TextureManager.h">
+    <ClInclude Include="Source\Core\RogueClient.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,7 +9,7 @@ Character::Character(int x, int y)
 	characterAnimations["WalkUp"] = WalkUpAnimation;
 	characterAnimations["WalkLeft"] = WalkLeftAnimation;
 
-	m_CharacterSprite = new AnimSprite("Assets\\Images\\SpriteSheet_Character.png", characterAnimations, "WalkDown", 60, 88, x, y);
+	m_CharacterSprite = new AnimSprite("Assets\\Images\\SpriteSheet_Character.png", characterAnimations, "WalkDown", 15, 22, x, y);
 	m_CharacterSprite->SetIdle(true);
 
 	m_Position.X = x;

@@ -4,16 +4,17 @@
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 
-#include "Utils.h"
-#include "Level.h"
-#include "GameTimer.h"
-#include "RenderText.h"
-#include "Character.h"
-#include "RenderImpl.h"
-#include "GameWindow.h"
-#include "InputManager.h"
+#include "Core/Utils.h"
+#include "Core/Level.h"
+#include "Core/GameTimer.h"
 
-#include "ImGuiImpl.h"
+#include "Components/RenderText.h"
+#include "Components/Character.h"
+
+#include "Systems/RenderImpl.h"
+#include "Systems/GameWindow.h"
+#include "Systems/InputManager.h"
+#include "Systems/ImGuiImpl.h"
 
 class RogueClient
 {

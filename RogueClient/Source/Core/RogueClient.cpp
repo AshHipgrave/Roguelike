@@ -11,7 +11,7 @@ bool RogueClient::Init(const char* windowTitle, int windowWidth, int windowHeigh
 	if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG))
 		return false;
 
-	if (!GameWindow::Instance().Init(windowTitle, windowWidth, windowHeight))
+	if (!GameWindow::Instance().Init(windowTitle, windowWidth, windowHeight, false))
 		return false;
 
 	if (!RenderImpl::Instance().Init())
@@ -37,7 +37,7 @@ void RogueClient::LoadResources()
 	m_CurrentLevel->Load("Assets\\Data\\Maps\\sample_map.tmx");
 	//m_CurrentLevel->Load("Assets\\Data\\Maps\\test_map.tmx");
 
-	m_PlayerCharacter = new Character(960, 540);
+	m_PlayerCharacter = new Character(545, 608);
 }
 
 void RogueClient::Run()
